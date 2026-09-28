@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 9</title>
+  <style>
+    :root {
+      --color-primary: #0f766e;
+      --color-accent: #14b8a6;
+      --color-bg: #f0fdfa;
+      --color-text: #1e293b;
+      --radius-card: 12px;
+      --spacing-md: 20px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-bg: #051a0a;
+        --color-text: #d4edda;
+      }
+    }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: sans-serif;
+      padding: var(--spacing-md);
+    }
+
+    .btn {
+      background: var(--color-primary);
+      color: white;
+      padding: 10px 24px;
+      border: none;
+      border-radius: var(--radius-card);
+    }
+
+    .card {
+      background: var(--color-bg);
+      border: 2px solid var(--color-accent);
+      border-radius: var(--radius-card);
+      padding: var(--spacing-md);
+      margin-top: var(--spacing-md);
+    }
+  </style>
+</head>
+<body>
+  <button class="btn">Primary Button</button>
+  <div class="card">CSS variables make themes easier to maintain.</div>
+</body>
+</html>
