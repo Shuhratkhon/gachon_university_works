@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 7</title>
+  <style>
+    :root {
+      --primary: #0f766e;
+      --accent: #14b8a6;
+      --bg: #f0fdfa;
+      --card: white;
+      --text: #1e293b;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #14b8a6;
+        --accent: #2dd4bf;
+        --bg: #051a0a;
+        --card: #0b2017;
+        --text: #d4edda;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: sans-serif;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 30px;
+      background: var(--primary);
+      color: white;
+    }
+
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px 30px 40px;
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .sticky-heading {
+      position: sticky;
+      top: 55px;
+      z-index: 5;
+      padding: 14px 30px;
+      background: var(--accent);
+      color: white;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .skill {
+      padding: 24px;
+      background: var(--card);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .skill:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(15, 118, 110, 0.2);
+    }
+
+    .skill::before {
+      content: "💻 ";
+    }
+
+    @media (min-width: 640px) {
+      .skills {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .content {
+      min-height: 900px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <strong>Shuhratkhon</strong>
+    <span>Computer Engineering</span>
+  </nav>
+
+  <section class="hero">
+    <h1>My Portfolio</h1>
+    <p>Computer Engineering student focused on web development and data science.</p>
+  </section>
+
+  <h2 class="sticky-heading">My Skills</h2>
+
+  <section class="skills">
+    <div class="skill">
+      <h3>HTML & CSS</h3>
+      <p>Responsive web structure and styling.</p>
+    </div>
+    <div class="skill">
+      <h3>Python</h3>
+      <p>Data analysis and programming.</p>
+    </div>
+    <div class="skill">
+      <h3>JavaScript</h3>
+      <p>Interactive web applications.</p>
+    </div>
+  </section>
+
+  <div class="content"></div>
+</body>
+</html>
