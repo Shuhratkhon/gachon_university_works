@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice 5</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      padding-top: 60px;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #1e293b;
+      color: white;
+      padding: 18px 30px;
+      display: flex;
+      justify-content: space-between;
+      z-index: 10;
+    }
+
+    .links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .links a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      color: #14b8a6;
+    }
+
+    main {
+      height: 1200px;
+      padding: 30px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <strong>MySite</strong>
+    <div class="links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+  </nav>
+  <main>
+    <h1>Fixed Navigation</h1>
+    <p>Scroll down to see that the navigation stays at the top.</p>
+  </main>
+</body>
+</html>
