@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 14</title>
+  <style>
+    body {
+      color: #0f766e;
+      font-family: Georgia, serif;
+      font-size: 18px;
+    }
+
+    .parent {
+      color: #f43f5e;
+      font-size: 20px;
+    }
+
+    .child-inherit {
+      color: inherit;
+    }
+
+    .child-initial {
+      color: initial;
+    }
+
+    .parent-bordered {
+      border: 3px solid #0f766e;
+      padding: 12px;
+    }
+
+    .inherit-border {
+      border: inherit;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <p>Parent color</p>
+    <p class="child-inherit">Child with inherit</p>
+    <p class="child-initial">Child with initial</p>
+  </div>
+  <div class="parent-bordered">
+    Parent border
+    <div class="inherit-border">Inherited border</div>
+  </div>
+</body>
+</html>
