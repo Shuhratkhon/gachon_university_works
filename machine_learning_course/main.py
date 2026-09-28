@@ -90,4 +90,7 @@ plt.show()
 # The model was trained on 400 emails and tested on 100 unseen emails.
 # The accuracy shows how many test emails it classified correctly, and the
 # confusion matrix shows where the mistakes were (false alarms vs missed spam)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7dc0d8a (Add machine learning course)
