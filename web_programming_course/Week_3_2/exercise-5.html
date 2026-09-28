@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 5</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      color: #1e293b;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 30px;
+      background: #1e293b;
+      color: white;
+    }
+
+    .links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .links a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      color: #14b8a6;
+    }
+
+    main {
+      padding: 100px 30px 30px;
+      height: 1800px;
+      background: #f0fdfa;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <strong>My Website</strong>
+    <div class="links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Fixed Navigation</h1>
+    <p>Scroll down to see that the navigation stays at the top.</p>
+  </main>
+</body>
+</html>
