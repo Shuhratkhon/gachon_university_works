@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice 7</title>
+  <style>
+    :root {
+      --primary: #0f766e;
+      --accent: #14b8a6;
+      --bg: #f0fdfa;
+      --card: white;
+      --text: #1e293b;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #051a0a;
+        --card: #0b2017;
+        --text: #d4edda;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: sans-serif;
+      padding-top: 64px;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #1e293b;
+      color: white;
+      padding: 18px 30px;
+      display: flex;
+      justify-content: space-between;
+      z-index: 10;
+    }
+
+    .hero {
+      padding: 70px 30px;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-title {
+      position: sticky;
+      top: 64px;
+      background: var(--bg);
+      padding: 15px 30px;
+      z-index: 5;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .skill {
+      background: var(--card);
+      padding: 25px;
+      border-radius: 12px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .skill::before {
+      content: "⚡";
+      display: block;
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .skill:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(15, 118, 110, 0.25);
+    }
+
+    @media (min-width: 640px) {
+      .skills {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <strong>Shuhratkhon</strong>
+    <span>Portfolio</span>
+  </nav>
+
+  <section class="hero">
+    <h1>Shuhratkhon</h1>
+    <p>Computer Engineering Student</p>
+  </section>
+
+  <h2 class="section-title">Skills</h2>
+
+  <section class="skills">
+    <div class="skill">
+      <h3>Python</h3>
+      <p>Programming and data analysis.</p>
+    </div>
+    <div class="skill">
+      <h3>HTML & CSS</h3>
+      <p>Responsive web development.</p>
+    </div>
+    <div class="skill">
+      <h3>JavaScript</h3>
+      <p>Interactive web applications.</p>
+    </div>
+  </section>
+</body>
+</html>
