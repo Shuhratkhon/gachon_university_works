@@ -1,195 +1,483 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Programming Course</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --border: #334155;
+            --success: #22c55e;
+            --purple: #a855f7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.5;
+            padding: 2rem 1rem 4rem;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            max-width: 960px;
+            margin: 0 auto 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* GitHub circular profile button */
+        .github-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25),
+                        0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
+            flex-shrink: 0;
+            text-decoration: none;
+            background: #1e293b;
+        }
+
+        .github-btn:hover {
+            transform: scale(1.08) rotate(3deg);
+            border-color: #a78bfa;
+            box-shadow: 0 0 0 5px rgba(167, 139, 250, 0.35),
+                        0 12px 28px rgba(0, 0, 0, 0.5);
+        }
+
+        .github-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ===== Main container ===== */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* ===== Week cards ===== */
+        .week-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .week-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+        }
+
+        .week-header {
+            background: linear-gradient(90deg, #1e3a8a, #312e81);
+            padding: 1rem 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .week-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        .week-header .badge {
+            background: rgba(255, 255, 255, 0.15);
+            font-size: 0.75rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            font-weight: 500;
+        }
+
+        .week-body {
+            padding: 1.25rem 1.4rem 1.5rem;
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin: 1.1rem 0 0.75rem;
+            font-weight: 600;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        /* ===== Button grid ===== */
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 0.7rem;
+        }
+
+        /* Interactive buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.65rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text);
+            background: #334155;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            border-color: #60a5fa;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Different accent for practises */
+        .btn.practise {
+            background: #3b0764;
+            border-color: transparent;
+        }
+
+        .btn.practise:hover {
+            background: var(--purple);
+            border-color: #c084fc;
+            box-shadow: 0 6px 16px rgba(168, 85, 247, 0.35);
+        }
+
+        /* Week navigation pills */
+        .week-nav {
+            max-width: 960px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+        }
+
+        .week-nav a {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.1rem;
+            border-radius: 999px;
+            background: #1e293b;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        .week-nav a:hover {
+            background: var(--accent);
+            border-color: #60a5fa;
+            transform: translateY(-1px);
+        }
+
+        /* Footer */
+        footer {
+            max-width: 960px;
+            margin: 3rem auto 0;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 500px) {
+            .btn-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .github-btn {
+                width: 48px;
+                height: 48px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-```
-<h1>Web Programming Course</h1>
+    <!-- Header with title + GitHub circular profile -->
+    <header class="header">
+        <h1>Web Programming Course</h1>
+        <a href="https://github.com/Shuhratkhon" 
+           class="github-btn" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           title="GitHub – Shuhratkhon">
+            <img src="https://github.com/Shuhratkhon.png" 
+                 alt="Shuhratkhon GitHub profile"
+                 onerror="this.src='https://unavatar.io/github/Shuhratkhon'; this.onerror=null;">
+        </a>
+    </header>
 
-<h2>Week 1</h2>
+    <!-- Quick week navigation -->
+    <nav class="week-nav">
+        <a href="#week1">Week 1</a>
+        <a href="#week2">Week 2</a>
+        <a href="#week3">Week 3</a>
+        <a href="#week3_2">Week 3.2</a>
+        <a href="#week4">Week 4</a>
+    </nav>
 
-<a href="Week_1/exercise-1.html">Exercise 1</a><br>
-<a href="Week_1/exercise-2.html">Exercise 2</a><br>
-<a href="Week_1/exercise-3.html">Exercise 3</a><br>
-<a href="Week_1/exercise-4.html">Exercise 4</a><br>
-<a href="Week_1/exercise-5.html">Exercise 5</a><br>
-<a href="Week_1/exercise-6.html">Exercise 6</a><br>
-<a href="Week_1/exercise-7.html">Exercise 7</a><br>
-<a href="Week_1/exercise-8.html">Exercise 8</a><br>
+    <main class="container">
 
+        <!-- ========== WEEK 1 ========== -->
+        <section class="week-card" id="week1">
+            <div class="week-header">
+                <h2>Week 1</h2>
+                <span class="badge">8 Exercises</span>
+            </div>
+            <div class="week-body">
+                <div class="btn-grid">
+                    <a class="btn" href="Week_1/exercise-1.html">Exercise 1</a>
+                    <a class="btn" href="Week_1/exercise-2.html">Exercise 2</a>
+                    <a class="btn" href="Week_1/exercise-3.html">Exercise 3</a>
+                    <a class="btn" href="Week_1/exercise-4.html">Exercise 4</a>
+                    <a class="btn" href="Week_1/exercise-5.html">Exercise 5</a>
+                    <a class="btn" href="Week_1/exercise-6.html">Exercise 6</a>
+                    <a class="btn" href="Week_1/exercise-7.html">Exercise 7</a>
+                    <a class="btn" href="Week_1/exercise-8.html">Exercise 8</a>
+                </div>
+            </div>
+        </section>
 
-<h2>Week 2</h2>
+        <!-- ========== WEEK 2 ========== -->
+        <section class="week-card" id="week2">
+            <div class="week-header">
+                <h2>Week 2</h2>
+                <span class="badge">25 Exercises</span>
+            </div>
+            <div class="week-body">
+                <div class="btn-grid">
+                    <a class="btn" href="Week_2/exercise-1.html">Exercise 1</a>
+                    <a class="btn" href="Week_2/exercise-2.html">Exercise 2</a>
+                    <a class="btn" href="Week_2/exercise-3.html">Exercise 3</a>
+                    <a class="btn" href="Week_2/exercise-4.html">Exercise 4</a>
+                    <a class="btn" href="Week_2/exercise-5.html">Exercise 5</a>
+                    <a class="btn" href="Week_2/exercise-6.html">Exercise 6</a>
+                    <a class="btn" href="Week_2/exercise-7.html">Exercise 7</a>
+                    <a class="btn" href="Week_2/exercise-8.html">Exercise 8</a>
+                    <a class="btn" href="Week_2/exercise-9.html">Exercise 9</a>
+                    <a class="btn" href="Week_2/exercise-10.html">Exercise 10</a>
+                    <a class="btn" href="Week_2/exercise-11.html">Exercise 11</a>
+                    <a class="btn" href="Week_2/exercise-12.html">Exercise 12</a>
+                    <a class="btn" href="Week_2/exercise-13.html">Exercise 13</a>
+                    <a class="btn" href="Week_2/exercise-14.html">Exercise 14</a>
+                    <a class="btn" href="Week_2/exercise-15.html">Exercise 15</a>
+                    <a class="btn" href="Week_2/exercise-16.html">Exercise 16</a>
+                    <a class="btn" href="Week_2/exercise-17.html">Exercise 17</a>
+                    <a class="btn" href="Week_2/exercise-18.html">Exercise 18</a>
+                    <a class="btn" href="Week_2/exercise-19.html">Exercise 19</a>
+                    <a class="btn" href="Week_2/exercise-20.html">Exercise 20</a>
+                    <a class="btn" href="Week_2/exercise-21.html">Exercise 21</a>
+                    <a class="btn" href="Week_2/exercise-22.html">Exercise 22</a>
+                    <a class="btn" href="Week_2/exercise-23.html">Exercise 23</a>
+                    <a class="btn" href="Week_2/exercise-24.html">Exercise 24</a>
+                    <a class="btn" href="Week_2/exercise-25.html">Exercise 25</a>
+                </div>
+            </div>
+        </section>
 
-<a href="Week_2/exercise-1.html">Exercise 1</a><br>
-<a href="Week_2/exercise-2.html">Exercise 2</a><br>
-<a href="Week_2/exercise-3.html">Exercise 3</a><br>
-<a href="Week_2/exercise-4.html">Exercise 4</a><br>
-<a href="Week_2/exercise-5.html">Exercise 5</a><br>
-<a href="Week_2/exercise-6.html">Exercise 6</a><br>
-<a href="Week_2/exercise-7.html">Exercise 7</a><br>
-<a href="Week_2/exercise-8.html">Exercise 8</a><br>
-<a href="Week_2/exercise-9.html">Exercise 9</a><br>
-<a href="Week_2/exercise-10.html">Exercise 10</a><br>
-<a href="Week_2/exercise-11.html">Exercise 11</a><br>
-<a href="Week_2/exercise-12.html">Exercise 12</a><br>
-<a href="Week_2/exercise-13.html">Exercise 13</a><br>
-<a href="Week_2/exercise-14.html">Exercise 14</a><br>
-<a href="Week_2/exercise-15.html">Exercise 15</a><br>
-<a href="Week_2/exercise-16.html">Exercise 16</a><br>
-<a href="Week_2/exercise-17.html">Exercise 17</a><br>
-<a href="Week_2/exercise-18.html">Exercise 18</a><br>
-<a href="Week_2/exercise-19.html">Exercise 19</a><br>
-<a href="Week_2/exercise-20.html">Exercise 20</a><br>
-<a href="Week_2/exercise-21.html">Exercise 21</a><br>
-<a href="Week_2/exercise-22.html">Exercise 22</a><br>
-<a href="Week_2/exercise-23.html">Exercise 23</a><br>
-<a href="Week_2/exercise-24.html">Exercise 24</a><br>
-<a href="Week_2/exercise-25.html">Exercise 25</a><br>
+        <!-- ========== WEEK 3 ========== -->
+        <section class="week-card" id="week3">
+            <div class="week-header">
+                <h2>Week 3</h2>
+                <span class="badge">25 + 8</span>
+            </div>
+            <div class="week-body">
+                <p class="section-title">Exercises</p>
+                <div class="btn-grid">
+                    <a class="btn" href="Week_3/exercise-1.html">Exercise 1</a>
+                    <a class="btn" href="Week_3/exercise-2.html">Exercise 2</a>
+                    <a class="btn" href="Week_3/exercise-3.html">Exercise 3</a>
+                    <a class="btn" href="Week_3/exercise-4.html">Exercise 4</a>
+                    <a class="btn" href="Week_3/exercise-5.html">Exercise 5</a>
+                    <a class="btn" href="Week_3/exercise-6.html">Exercise 6</a>
+                    <a class="btn" href="Week_3/exercise-7.html">Exercise 7</a>
+                    <a class="btn" href="Week_3/exercise-8.html">Exercise 8</a>
+                    <a class="btn" href="Week_3/exercise-9.html">Exercise 9</a>
+                    <a class="btn" href="Week_3/exercise-10.html">Exercise 10</a>
+                    <a class="btn" href="Week_3/exercise-11.html">Exercise 11</a>
+                    <a class="btn" href="Week_3/exercise-12.html">Exercise 12</a>
+                    <a class="btn" href="Week_3/exercise-13.html">Exercise 13</a>
+                    <a class="btn" href="Week_3/exercise-14.html">Exercise 14</a>
+                    <a class="btn" href="Week_3/exercise-15.html">Exercise 15</a>
+                    <a class="btn" href="Week_3/exercise-16.html">Exercise 16</a>
+                    <a class="btn" href="Week_3/exercise-17.html">Exercise 17</a>
+                    <a class="btn" href="Week_3/exercise-18.html">Exercise 18</a>
+                    <a class="btn" href="Week_3/exercise-19.html">Exercise 19</a>
+                    <a class="btn" href="Week_3/exercise-20.html">Exercise 20</a>
+                    <a class="btn" href="Week_3/exercise-21.html">Exercise 21</a>
+                    <a class="btn" href="Week_3/exercise-22.html">Exercise 22</a>
+                    <a class="btn" href="Week_3/exercise-23.html">Exercise 23</a>
+                    <a class="btn" href="Week_3/exercise-24.html">Exercise 24</a>
+                    <a class="btn" href="Week_3/exercise-25.html">Exercise 25</a>
+                </div>
 
+                <p class="section-title">Practises</p>
+                <div class="btn-grid">
+                    <a class="btn practise" href="Week_3/practise-1.html">Practise 1</a>
+                    <a class="btn practise" href="Week_3/practise-2.html">Practise 2</a>
+                    <a class="btn practise" href="Week_3/practise-3.html">Practise 3</a>
+                    <a class="btn practise" href="Week_3/practise-4.html">Practise 4</a>
+                    <a class="btn practise" href="Week_3/practise-5.html">Practise 5</a>
+                    <a class="btn practise" href="Week_3/practise-6.html">Practise 6</a>
+                    <a class="btn practise" href="Week_3/practise-7.html">Practise 7</a>
+                    <a class="btn practise" href="Week_3/practise-8.html">Practise 8</a>
+                </div>
+            </div>
+        </section>
 
-<h2>Week 3</h2>
+        <!-- ========== WEEK 3.2 ========== -->
+        <section class="week-card" id="week3_2">
+            <div class="week-header">
+                <h2>Week 3.2</h2>
+                <span class="badge">15 + 7</span>
+            </div>
+            <div class="week-body">
+                <p class="section-title">Exercises</p>
+                <div class="btn-grid">
+                    <a class="btn" href="Week_3_2/exercise-1.html">Exercise 1</a>
+                    <a class="btn" href="Week_3_2/exercise-2.html">Exercise 2</a>
+                    <a class="btn" href="Week_3_2/exercise-3.html">Exercise 3</a>
+                    <a class="btn" href="Week_3_2/exercise-4.html">Exercise 4</a>
+                    <a class="btn" href="Week_3_2/exercise-5.html">Exercise 5</a>
+                    <a class="btn" href="Week_3_2/exercise-6.html">Exercise 6</a>
+                    <a class="btn" href="Week_3_2/exercise-7.html">Exercise 7</a>
+                    <a class="btn" href="Week_3_2/exercise-8.html">Exercise 8</a>
+                    <a class="btn" href="Week_3_2/exercise-9.html">Exercise 9</a>
+                    <a class="btn" href="Week_3_2/exercise-10.html">Exercise 10</a>
+                    <a class="btn" href="Week_3_2/exercise-11.html">Exercise 11</a>
+                    <a class="btn" href="Week_3_2/exercise-12.html">Exercise 12</a>
+                    <a class="btn" href="Week_3_2/exercise-13.html">Exercise 13</a>
+                    <a class="btn" href="Week_3_2/exercise-14.html">Exercise 14</a>
+                    <a class="btn" href="Week_3_2/exercise-15.html">Exercise 15</a>
+                </div>
 
-<h3>Exercises</h3>
+                <p class="section-title">Practises</p>
+                <div class="btn-grid">
+                    <a class="btn practise" href="Week_3_2/practise-1.html">Practise 1</a>
+                    <a class="btn practise" href="Week_3_2/practise-2.html">Practise 2</a>
+                    <a class="btn practise" href="Week_3_2/practise-3.html">Practise 3</a>
+                    <a class="btn practise" href="Week_3_2/practise-4.html">Practise 4</a>
+                    <a class="btn practise" href="Week_3_2/practise-5.html">Practise 5</a>
+                    <a class="btn practise" href="Week_3_2/practise-6.html">Practise 6</a>
+                    <a class="btn practise" href="Week_3_2/practise-7.html">Practise 7</a>
+                </div>
+            </div>
+        </section>
 
-<a href="Week_3/exercise-1.html">Exercise 1</a><br>
-<a href="Week_3/exercise-2.html">Exercise 2</a><br>
-<a href="Week_3/exercise-3.html">Exercise 3</a><br>
-<a href="Week_3/exercise-4.html">Exercise 4</a><br>
-<a href="Week_3/exercise-5.html">Exercise 5</a><br>
-<a href="Week_3/exercise-6.html">Exercise 6</a><br>
-<a href="Week_3/exercise-7.html">Exercise 7</a><br>
-<a href="Week_3/exercise-8.html">Exercise 8</a><br>
-<a href="Week_3/exercise-9.html">Exercise 9</a><br>
-<a href="Week_3/exercise-10.html">Exercise 10</a><br>
-<a href="Week_3/exercise-11.html">Exercise 11</a><br>
-<a href="Week_3/exercise-12.html">Exercise 12</a><br>
-<a href="Week_3/exercise-13.html">Exercise 13</a><br>
-<a href="Week_3/exercise-14.html">Exercise 14</a><br>
-<a href="Week_3/exercise-15.html">Exercise 15</a><br>
-<a href="Week_3/exercise-16.html">Exercise 16</a><br>
-<a href="Week_3/exercise-17.html">Exercise 17</a><br>
-<a href="Week_3/exercise-18.html">Exercise 18</a><br>
-<a href="Week_3/exercise-19.html">Exercise 19</a><br>
-<a href="Week_3/exercise-20.html">Exercise 20</a><br>
-<a href="Week_3/exercise-21.html">Exercise 21</a><br>
-<a href="Week_3/exercise-22.html">Exercise 22</a><br>
-<a href="Week_3/exercise-23.html">Exercise 23</a><br>
-<a href="Week_3/exercise-24.html">Exercise 24</a><br>
-<a href="Week_3/exercise-25.html">Exercise 25</a><br>
+        <!-- ========== WEEK 4 ========== -->
+        <section class="week-card" id="week4">
+            <div class="week-header">
+                <h2>Week 4</h2>
+                <span class="badge">15 + 7</span>
+            </div>
+            <div class="week-body">
+                <p class="section-title">Exercises</p>
+                <div class="btn-grid">
+                    <a class="btn" href="Week_4/exercise-1.html">Exercise 1</a>
+                    <a class="btn" href="Week_4/exercise-2.html">Exercise 2</a>
+                    <a class="btn" href="Week_4/exercise-3.html">Exercise 3</a>
+                    <a class="btn" href="Week_4/exercise-4.html">Exercise 4</a>
+                    <a class="btn" href="Week_4/exercise-5.html">Exercise 5</a>
+                    <a class="btn" href="Week_4/exercise-6.html">Exercise 6</a>
+                    <a class="btn" href="Week_4/exercise-7.html">Exercise 7</a>
+                    <a class="btn" href="Week_4/exercise-8.html">Exercise 8</a>
+                    <a class="btn" href="Week_4/exercise-9.html">Exercise 9</a>
+                    <a class="btn" href="Week_4/exercise-10.html">Exercise 10</a>
+                    <a class="btn" href="Week_4/exercise-11.html">Exercise 11</a>
+                    <a class="btn" href="Week_4/exercise-12.html">Exercise 12</a>
+                    <a class="btn" href="Week_4/exercise-13.html">Exercise 13</a>
+                    <a class="btn" href="Week_4/exercise-14.html">Exercise 14</a>
+                    <a class="btn" href="Week_4/exercise-15.html">Exercise 15</a>
+                </div>
 
-<h3>Practises</h3>
+                <p class="section-title">Practises</p>
+                <div class="btn-grid">
+                    <a class="btn practise" href="Week_4/practise-1.html">Practise 1</a>
+                    <a class="btn practise" href="Week_4/practise-2.html">Practise 2</a>
+                    <a class="btn practise" href="Week_4/practise-3.html">Practise 3</a>
+                    <a class="btn practise" href="Week_4/practise-4.html">Practise 4</a>
+                    <a class="btn practise" href="Week_4/practise-5.html">Practise 5</a>
+                    <a class="btn practise" href="Week_4/practise-6.html">Practise 6</a>
+                    <a class="btn practise" href="Week_4/practise-7.html">Practise 7</a>
+                </div>
+            </div>
+        </section>
 
-<a href="Week_3/practise-1.html">Practise 1</a><br>
-<a href="Week_3/practise-2.html">Practise 2</a><br>
-<a href="Week_3/practise-3.html">Practise 3</a><br>
-<a href="Week_3/practise-4.html">Practise 4</a><br>
-<a href="Week_3/practise-5.html">Practise 5</a><br>
-<a href="Week_3/practise-6.html">Practise 6</a><br>
-<a href="Week_3/practise-7.html">Practise 7</a><br>
-<a href="Week_3/practise-8.html">Practise 8</a><br>
+    </main>
 
-
-<h2>Week 3.2</h2>
-
-<h3>Exercises</h3>
-
-<a href="Week_3_2/exercise-1.html">Exercise 1</a><br>
-<a href="Week_3_2/exercise-2.html">Exercise 2</a><br>
-<a href="Week_3_2/exercise-3.html">Exercise 3</a><br>
-<a href="Week_3_2/exercise-4.html">Exercise 4</a><br>
-<a href="Week_3_2/exercise-5.html">Exercise 5</a><br>
-<a href="Week_3_2/exercise-6.html">Exercise 6</a><br>
-<a href="Week_3_2/exercise-7.html">Exercise 7</a><br>
-<a href="Week_3_2/exercise-8.html">Exercise 8</a><br>
-<a href="Week_3_2/exercise-9.html">Exercise 9</a><br>
-<a href="Week_3_2/exercise-10.html">Exercise 10</a><br>
-<a href="Week_3_2/exercise-11.html">Exercise 11</a><br>
-<a href="Week_3_2/exercise-12.html">Exercise 12</a><br>
-<a href="Week_3_2/exercise-13.html">Exercise 13</a><br>
-<a href="Week_3_2/exercise-14.html">Exercise 14</a><br>
-<a href="Week_3_2/exercise-15.html">Exercise 15</a><br>
-
-<h3>Practises</h3>
-
-<a href="Week_3_2/practise-1.html">Practise 1</a><br>
-<a href="Week_3_2/practise-2.html">Practise 2</a><br>
-<a href="Week_3_2/practise-3.html">Practise 3</a><br>
-<a href="Week_3_2/practise-4.html">Practise 4</a><br>
-<a href="Week_3_2/practise-5.html">Practise 5</a><br>
-<a href="Week_3_2/practise-6.html">Practise 6</a><br>
-<a href="Week_3_2/practise-7.html">Practise 7</a><br>
-
-
-<h2>Week 4</h2>
-
-<h3>Exercises</h3>
-
-<a href="Week_4/exercise-1.html">Exercise 1</a><br>
-<a href="Week_4/exercise-2.html">Exercise 2</a><br>
-<a href="Week_4/exercise-3.html">Exercise 3</a><br>
-<a href="Week_4/exercise-4.html">Exercise 4</a><br>
-<a href="Week_4/exercise-5.html">Exercise 5</a><br>
-<a href="Week_4/exercise-6.html">Exercise 6</a><br>
-<a href="Week_4/exercise-7.html">Exercise 7</a><br>
-<a href="Week_4/exercise-8.html">Exercise 8</a><br>
-<a href="Week_4/exercise-9.html">Exercise 9</a><br>
-<a href="Week_4/exercise-10.html">Exercise 10</a><br>
-<a href="Week_4/exercise-11.html">Exercise 11</a><br>
-<a href="Week_4/exercise-12.html">Exercise 12</a><br>
-<a href="Week_4/exercise-13.html">Exercise 13</a><br>
-<a href="Week_4/exercise-14.html">Exercise 14</a><br>
-<a href="Week_4/exercise-15.html">Exercise 15</a><br>
-
-<h3>Practises</h3>
-
-<a href="Week_4/practise-1.html">Practise 1</a><br>
-<a href="Week_4/practise-2.html">Practise 2</a><br>
-<a href="Week_4/practise-3.html">Practise 3</a><br>
-<a href="Week_4/practise-4.html">Practise 4</a><br>
-<a href="Week_4/practise-5.html">Practise 5</a><br>
-<a href="Week_4/practise-6.html">Practise 6</a><br>
-<a href="Week_4/practise-7.html">Practise 7</a><br>
-```
+    <footer>
+        Built for the Web Programming Course · 
+        <a href="https://github.com/Shuhratkhon" target="_blank" rel="noopener">@Shuhratkhon</a>
+    </footer>
 
 </body>
 </html>
-```
-
-Now every link follows the exact pattern:
-
-```text
-index.html
-   ↓
-Week_3
-   ↓
-exercise-1.html
-   ↓
-interactive exercise
-```
-
-So, for example, **Week 3 → Practise 5** goes to:
-
-```text
-web_programming_course/Week_3/practise-5.html
-```
-
-and **Week 4 → Exercise 15** goes to:
-
-```text
-web_programming_course/Week_4/exercise-15.html
-```
-
-### One thing to verify
-
-Your actual folder must be named **exactly**:
-
-```text
-Week_3_2
-```
-
-If it's instead `Week_3.2`, `Week 3.2`, or something else, tell me the exact folder name and I'll change all 22 links accordingly.
