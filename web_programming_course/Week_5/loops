@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loops</title>
+</head>
+<body>
+
+<!--   main code:   -->
+<h1>Show Products</h1>
+
+<button onclick="showFruits()">Fruits</button>
+<button onclick="showVegetables()">Vegetables</button>
+<button onclick="clearProducts()">Clear</button>
+
+<h3>All Products:</h3>
+
+<div id="products"></div>
+
+<p>Total Products: <span id="counter">0</span></p>
+
+<script>
+    const fruits = ["Apple", "Banana", "Orange", "Mango", "Strawberry"];
+    const vegetables = ["Carrot", "Potato", "Tomato", "Onion", "Cucumber"];
+
+    function showFruits() {
+        let list = document.getElementById("products");
+
+        if (list.innerHTML.includes("Apple")) {
+            list.innerHTML = list.innerHTML
+                .replace("<p>Apple</p>", "")
+                .replace("<p>Banana</p>", "")
+                .replace("<p>Orange</p>", "")
+                .replace("<p>Mango</p>", "")
+                .replace("<p>Strawberry</p>", "");
+        } else {
+            for (let fruit of fruits) {
+                list.innerHTML += "<p>" + fruit + "</p>";
+            }
+        }
+
+        updateCounter();
+    }
+
+    function showVegetables() {
+        let list = document.getElementById("products");
+
+        if (list.innerHTML.includes("Carrot")) {
+            list.innerHTML = list.innerHTML
+                .replace("<p>Carrot</p>", "")
+                .replace("<p>Potato</p>", "")
+                .replace("<p>Tomato</p>", "")
+                .replace("<p>Onion</p>", "")
+                .replace("<p>Cucumber</p>", "");
+        } else {
+            for (let vegetable of vegetables) {
+                list.innerHTML += "<p>" + vegetable + "</p>";
+            }
+        }
+
+        updateCounter();
+    }
+
+    function clearProducts() {
+        document.getElementById("products").innerHTML = "";
+        updateCounter();
+    }
+
+    function updateCounter() {
+        let products = document.querySelectorAll("#products p");
+        document.getElementById("counter").textContent = products.length;
+    }
+</script>
+
+</body>
+</html>
 
