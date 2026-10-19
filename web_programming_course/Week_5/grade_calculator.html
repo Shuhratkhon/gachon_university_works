@@ -1,43 +1,124 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grade Checker</title>
-</head>
-<body>
-
-<!-- main code: -->
-<h1>Grade Checker</h1>
-
-<label for="score">Score (0-100):</label>
-<input type="number" id="score">
-
-<button onclick="checkGrade()">Check Grade</button>
-
-<p id="grade">Grade: -</p>
-
-<script>
-    function checkGrade() {
-        let score = Number(document.getElementById("score").value);
-        let grade;
-
-        if (score >= 90) {
-            grade = "A";
-        } else if (score >= 80) {
-            grade = "B";
-        } else if (score >= 70) {
-            grade = "C";
-        } else if (score >= 60) {
-            grade = "D";
-        } else {
-            grade = "F";
+    <style>
+        * {
+            box-sizing: border-box;
         }
 
-        document.getElementById("grade").textContent = "Grade: " + grade;
-    }
-</script>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #142b50;
+            margin: 0;
+            padding: 40px 20px;
+        }
 
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: white;
+            padding: 28px;
+            border: 1px solid #d5e0f0;
+            border-radius: 12px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin: 20px 0 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #b8c7dc;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        button, .back-link {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 11px 18px;
+            border: 0;
+            border-radius: 7px;
+            background: #2679ed;
+            color: white;
+            font-size: 15px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #grade {
+            margin-top: 20px;
+            padding: 14px;
+            background: #eef5ff;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        #message {
+            color: #c62828;
+            min-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1>Grade Checker</h1>
+        <p>Enter a score from 0 to 100 to check your grade.</p>
+
+        <label for="score">Score (0-100):</label>
+        <input type="number" id="score" min="0" max="100" step="1"
+               placeholder="Enter your score">
+
+        <button type="button" onclick="checkGrade()">Check Grade</button>
+
+        <p id="message" role="alert"></p>
+        <p id="grade" aria-live="polite">Grade: -</p>
+
+        <a class="back-link" href="../index.html">Back to course page</a>
+    </main>
+
+    <script>
+        function checkGrade() {
+            const scoreInput = document.getElementById("score");
+            const message = document.getElementById("message");
+            const gradeElement = document.getElementById("grade");
+            const value = scoreInput.value.trim();
+
+            message.textContent = "";
+
+            if (value === "" || Number(value) < 0 || Number(value) > 100) {
+                message.textContent = "Please enter a score between 0 and 100.";
+                gradeElement.textContent = "Grade: -";
+                return;
+            }
+
+            const score = Number(value);
+            let grade;
+
+            if (score >= 90) {
+                grade = "A";
+            } else if (score >= 80) {
+                grade = "B";
+            } else if (score >= 70) {
+                grade = "C";
+            } else if (score >= 60) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+
+            gradeElement.textContent = "Grade: " + grade;
+        }
+    </script>
 </body>
 </html>
-
