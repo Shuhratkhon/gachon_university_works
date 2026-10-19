@@ -1,1 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grade Checker</title>
+</head>
+<body>
+
+<!-- main code: -->
+<h1>Grade Checker</h1>
+
+<label for="score">Score (0-100):</label>
+<input type="number" id="score">
+
+<button onclick="checkGrade()">Check Grade</button>
+
+<p id="grade">Grade: -</p>
+
+<script>
+    function checkGrade() {
+        let score = Number(document.getElementById("score").value);
+        let grade;
+
+        if (score >= 90) {
+            grade = "A";
+        } else if (score >= 80) {
+            grade = "B";
+        } else if (score >= 70) {
+            grade = "C";
+        } else if (score >= 60) {
+            grade = "D";
+        } else {
+            grade = "F";
+        }
+
+        document.getElementById("grade").textContent = "Grade: " + grade;
+    }
+</script>
+
+</body>
+</html>
 
