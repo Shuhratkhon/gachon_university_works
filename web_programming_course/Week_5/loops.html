@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Products</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #142b50;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: white;
+            padding: 28px;
+            border: 1px solid #d5e0f0;
+            border-radius: 12px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        button {
+            margin: 5px 5px 5px 0;
+            padding: 10px 16px;
+            border: 0;
+            border-radius: 7px;
+            background: #2679ed;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #155fc5;
+        }
+
+        #clearButton {
+            background: #64748b;
+        }
+
+        #products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .product {
+            background: #eef5ff;
+            border: 1px solid #d5e0f0;
+            border-radius: 7px;
+            padding: 12px 16px;
+            margin: 0;
+        }
+
+        #counter {
+            font-weight: bold;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #2679ed;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1>Show Products</h1>
+        <p>Use the buttons to show or hide each group of products.</p>
+
+        <button type="button" onclick="toggleProducts('fruits')">Fruits</button>
+        <button type="button" onclick="toggleProducts('vegetables')">Vegetables</button>
+        <button type="button" id="clearButton" onclick="clearProducts()">Clear</button>
+
+        <h3>All Products:</h3>
+        <div id="products"></div>
+
+        <p>Total Products: <span id="counter">0</span></p>
+
+        <a class="back-link" href="../index.html">Back to course page</a>
+    </main>
+
+    <script>
+        const fruits = ["Apple", "Banana", "Orange", "Mango", "Strawberry"];
+        const vegetables = ["Carrot", "Potato", "Tomato", "Onion", "Cucumber"];
+        const visibleProducts = new Set();
+
+        function toggleProducts(type) {
+            const items = type === "fruits" ? fruits : vegetables;
+
+            if (visibleProducts.has(type)) {
+                items.forEach(item => visibleProducts.delete(item));
+                visibleProducts.delete(type);
+            } else {
+                visibleProducts.add(type);
+                items.forEach(item => visibleProducts.add(item));
+            }
+
+            displayProducts();
+        }
+
+        function displayProducts() {
+            const productList = document.getElementById("products");
+            productList.innerHTML = "";
+
+            const selectedItems = [];
+
+            if (visibleProducts.has("fruits")) {
+                selectedItems.push(...fruits);
+            }
+
+            if (visibleProducts.has("vegetables")) {
+                selectedItems.push(...vegetables);
+            }
+
+            selectedItems.forEach(product => {
+                const item = document.createElement("p");
+                item.className = "product";
+                item.textContent = product;
+                productList.appendChild(item);
+            });
+
+            document.getElementById("counter").textContent = selectedItems.length;
+        }
+
+        function clearProducts() {
+            visibleProducts.clear();
+            displayProducts();
+        }
+    </script>
+</body>
+</html>
