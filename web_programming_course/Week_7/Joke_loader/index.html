@@ -1,1 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Joke Fetcher</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>😂 Random Joke Fetcher</h1>
+        <p class="subtitle">Click the button to get a random joke!</p>
 
+        <button id="jokeButton" onclick="loadJoke()">Tell Me a Joke</button>
+
+        <div class="joke-card">
+            <p class="label">Setup:</p>
+            <p class="joke-text" id="setup">Your joke will appear here.</p>
+            <hr>
+            <p class="label">Punchline:</p>
+            <p class="joke-text" id="punchline">Click the button to begin!</p>
+        </div>
+
+        <button id="favoriteButton" onclick="toggleFavorite()" disabled>
+            ♡ Save to favourites
+        </button>
+
+        <div id="loading" class="hidden">
+            <span class="spinner"></span>
+            Loading...
+        </div>
+
+        <div id="error" class="hidden" role="alert">
+            Oops! Something went wrong. Please try again.
+        </div>
+
+        <div class="favorites-section">
+            <h2>My Favourites ❤️</h2>
+            <div id="favoritesList"></div>
+            <p id="emptyFavorites">No favourite jokes saved yet.</p>
+        </div>
+
+        <footer>Made for a little laugh every day!</footer>
+    </div>
+</body>
+</html>
