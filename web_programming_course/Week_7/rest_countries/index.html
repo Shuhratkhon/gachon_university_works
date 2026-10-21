@@ -1,18 +1,26 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REST Countries</title>
+    <title>Country Search</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <h1>Country Search</h1>
-    <input id="country" placeholder="Enter country name">
-    <button onclick="loadCountry()">Search</button>
-    <div id="result"></div>
-    <p id="error"></p>
+    <main class="container">
+        <h1>Country Search</h1>
+
+        <form id="search-form">
+            <label for="country">Country name</label>
+            <div class="search-box">
+                <input id="country" type="text" placeholder="e.g. Japan, China, Turkey">
+                <button type="submit">Search</button>
+            </div>
+        </form>
+
+        <p id="message" role="status"></p>
+        <div id="result"></div>
+    </main>
 </body>
 </html>
