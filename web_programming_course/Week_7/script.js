@@ -15,7 +15,11 @@ const password = document.getElementById("password");
 function validateField(field) {
     field.setCustomValidity("");
 
-    if (field === confirmPassword && field.value !== password.value) {
+    if (
+        field === confirmPassword &&
+        field.value !== "" &&
+        field.value !== password.value
+    ) {
         field.setCustomValidity("Passwords do not match.");
     }
 
