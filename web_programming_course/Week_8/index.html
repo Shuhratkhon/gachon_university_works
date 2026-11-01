@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 8 | Registration Form Upgrade</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="../index.html">Web Programming Course</a>
+        <a class="home-link" href="../index.html">← All weekly homeworks</a>
+    </header>
+    <main class="container">
+        <section class="hero">
+            <p class="eyebrow">WEEK 08 · FORM VALIDATION</p>
+            <h1>How the registration form <span>was upgraded</span></h1>
+            <p class="lead">Follow the improvement process: inspect the original experience, apply targeted fixes, and verify the result.</p>
+            <div class="process">
+                <div><b>01</b><strong>Inspect</strong><small>Find the friction</small></div>
+                <div><b>02</b><strong>Improve</strong><small>Change the code</small></div>
+                <div><b>03</b><strong>Verify</strong><small>Test it again</small></div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="section-heading"><div><p class="eyebrow">THE WORKFLOW</p><h2>Follow the upgrade</h2></div><p>Select a stage to see what was checked and how the implementation changed.</p></div>
+            <div class="tabs" role="tablist" aria-label="Upgrade stages">
+                <button class="tab active" role="tab" aria-selected="true" data-stage="inspect">01 · Inspect</button>
+                <button class="tab" role="tab" aria-selected="false" data-stage="improve">02 · Improve</button>
+                <button class="tab" role="tab" aria-selected="false" data-stage="verify">03 · Verify</button>
+            </div>
+            <div class="stage-panel" id="stage-panel" role="tabpanel" tabindex="0">
+                <div><p class="stage-label" id="stage-label">STAGE 01 / INSPECTION</p><h3 id="stage-title">Start with the user experience</h3><p id="stage-description">Test incomplete fields, mismatched passwords, and keyboard navigation before changing the form. The goal is to identify where a user can get stuck.</p><ul id="stage-list"><li>Submit with required fields empty.</li><li>Enter different values in the password fields.</li><li>Check whether errors are clear and connected to inputs.</li></ul></div>
+                <aside class="preview"><p class="preview-label" id="preview-label">INITIAL CHECK</p><div class="mock-form"><label>Email address</label><div class="mock-input">name@example.com</div><label>Password</label><div class="mock-input invalid">•••••••• <span>!</span></div><p id="preview-message" class="message">Check what happens when fields are invalid.</p><div class="mock-button" id="preview-button">Run test</div></div><small id="preview-foot">The first pass establishes a baseline before changes are made.</small></aside>
+            </div>
+        </section>
+        <section class="section">
+            <div class="section-heading"><div><p class="eyebrow">TRACEABLE CHANGES</p><h2>Problem → fix → proof</h2></div><label class="filter">Filter issues <select id="issue-filter"><option value="all">All improvements</option><option value="validation">Validation</option><option value="accessibility">Accessibility</option><option value="feedback">User feedback</option></select></label></div>
+            <div class="issues">
+                <article class="issue" data-category="validation"><button class="issue-toggle" aria-expanded="true" aria-controls="issue-1"><span class="issue-icon">!</span><span><b>Invalid form submission</b><small>Validation · Step 1</small></span><span class="fixed">Fixed</span><span class="chevron">−</span></button><div class="issue-content" id="issue-1"><div><small>WHAT WE FOUND</small><p>Native validation can interrupt custom feedback before the intended submit logic runs.</p></div><b class="arrow">→</b><div><small>HOW IT WAS FIXED</small><p>Use <code>novalidate</code> and <code>event.preventDefault()</code>, then handle validity deliberately.</p></div><p class="proof">✓ Test: empty fields show the intended validation feedback.</p></div></article>
+                <article class="issue" data-category="accessibility"><button class="issue-toggle" aria-expanded="false" aria-controls="issue-2"><span class="issue-icon blue">A</span><span><b>Errors are hard to understand</b><small>Accessibility · Step 2</small></span><span class="fixed">Fixed</span><span class="chevron">+</span></button><div class="issue-content" id="issue-2" hidden><div><small>WHAT WE FOUND</small><p>An error may not be clearly associated with the field it describes.</p></div><b class="arrow">→</b><div><small>HOW IT WAS FIXED</small><p>Connect inputs and messages with <code>aria-describedby</code> and update <code>aria-invalid</code>.</p></div><p class="proof">✓ Test: error messages are associated with the right fields.</p></div></article>
+                <article class="issue" data-category="validation"><button class="issue-toggle" aria-expanded="false" aria-controls="issue-3"><span class="issue-icon">≠</span><span><b>Password confirmation does not match</b><small>Validation · Step 3</small></span><span class="fixed">Fixed</span><span class="chevron">+</span></button><div class="issue-content" id="issue-3" hidden><div><small>WHAT WE FOUND</small><p>The form needs to explain when confirmation differs from the password.</p></div><b class="arrow">→</b><div><small>HOW IT WAS FIXED</small><p>Compare both values and use <code>setCustomValidity()</code> to set or clear the mismatch.</p></div><p class="proof">✓ Test: mismatched passwords block submission.</p></div></article>
+                <article class="issue" data-category="feedback"><button class="issue-toggle" aria-expanded="false" aria-controls="issue-4"><span class="issue-icon green">✓</span><span><b>No clear success confirmation</b><small>User feedback · Step 4</small></span><span class="fixed">Fixed</span><span class="chevron">+</span></button><div class="issue-content" id="issue-4" hidden><div><small>WHAT WE FOUND</small><p>After valid submission, the user needs to know the form was accepted.</p></div><b class="arrow">→</b><div><small>HOW IT WAS FIXED</small><p>Show a success message in a status area with <code>aria-live="polite"</code>.</p></div><p class="proof">✓ Test: success feedback is visible and announced.</p></div></article>
+            </div>
+        </section>
+        <section class="final-check"><div><p class="eyebrow">FINAL PASS</p><h2>Re-test after every fix.</h2><p>A code change alone does not prove an improvement. Repeat the same checks and confirm that the expected behavior works.</p></div><ul><li>✓ Empty fields show validation feedback</li><li>✓ Password mismatch blocks submission</li><li>✓ Valid input displays success status</li></ul></section>
+        <footer>Built for the Web Programming Course · <a href="https://github.com/Shuhratkhon" target="_blank" rel="noopener noreferrer">@Shuhratkhon</a></footer>
+    </main>
+</body>
+</html>
