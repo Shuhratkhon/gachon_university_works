@@ -229,6 +229,138 @@
             transform: translateY(-1px);
         }
 
+        /* ===== Group project showcase ===== */
+        .group-project {
+            margin-top: 1.6rem;
+            padding: 1.25rem;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.72), rgba(30, 27, 75, 0.72));
+        }
+
+        .group-project-heading {
+            padding: 0.25rem 0 1.25rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project-kicker {
+            display: inline-block;
+            color: #93c5fd;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            margin-bottom: 0.4rem;
+        }
+
+        .group-project-heading h3 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            letter-spacing: -0.04em;
+            line-height: 1.15;
+            background: linear-gradient(90deg, #f1f5f9, #93c5fd, #c4b5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.65rem;
+        }
+
+        .group-project-heading > p {
+            max-width: 680px;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            margin-top: 1rem;
+        }
+
+        .project-actions .btn {
+            border-color: #475569;
+        }
+
+        .project-actions .project-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .project-actions .project-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .project-actions .project-secondary {
+            background: transparent;
+            border-color: #64748b;
+        }
+
+        .project-subsection {
+            margin-top: 1.2rem;
+        }
+
+        .project-subsection h4 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.7rem;
+        }
+
+        .project-tile {
+            min-width: 0;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--accent);
+            border-radius: 10px;
+            background: rgba(30, 41, 59, 0.82);
+        }
+
+        .project-tile strong {
+            display: block;
+            font-size: 0.98rem;
+            margin-bottom: 0.55rem;
+        }
+
+        .team-grid .project-tile span {
+            color: #5eead4;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .problem-tile {
+            border-top-color: #2dd4bf;
+        }
+
+        .problem-tile p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 650px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .group-project {
+                padding: 1rem;
+            }
+
+            .project-actions {
+                flex-direction: column;
+            }
+
+            .project-actions .btn {
+                width: 100%;
+            }
+        }
+
         /* Footer */
         footer {
             max-width: 960px;
@@ -536,6 +668,45 @@
                 <p class="section-title">Form Validation · Accessibility</p>
                 <div class="btn-grid">
                     <a class="btn" href="Week_8/index.html">Registration Form Upgrade</a>
+                </div>
+
+                <div class="group-project">
+                    <div class="group-project-heading">
+                        <span class="project-kicker">GROUP PROJECT</span>
+                        <h3>Overlap</h3>
+                        <p>A university app where students chat, meet, study and learn. Find your course mates who you overlap with!</p>
+                        <div class="project-actions">
+                            <a class="btn project-primary" href="https://overlaps.tech" target="_blank" rel="noopener noreferrer">Visit overlaps.tech ↗</a>
+                            <a class="btn project-secondary" href="https://www.instagram.com/overlaps.app/" target="_blank" rel="noopener noreferrer">Instagram @overlaps.app ↗</a>
+                        </div>
+                    </div>
+
+                    <div class="project-subsection">
+                        <h4>Team</h4>
+                        <div class="project-grid team-grid">
+                            <div class="project-tile"><strong>Rahimjon</strong><span>202438377</span></div>
+                            <div class="project-tile"><strong>Asilbek</strong><span>202438394</span></div>
+                            <div class="project-tile"><strong>Shuhratxon</strong><span>202537358</span></div>
+                        </div>
+                    </div>
+
+                    <div class="project-subsection">
+                        <h4>The problem</h4>
+                        <div class="project-grid">
+                            <article class="project-tile problem-tile">
+                                <strong>Same lecture, never spoken</strong>
+                                <p>You can see the same faces for a whole semester without saying hello.</p>
+                            </article>
+                            <article class="project-tile problem-tile">
+                                <strong>Most apps start from looks</strong>
+                                <p>A photo and a swipe tell you nothing about whether you would get along.</p>
+                            </article>
+                            <article class="project-tile problem-tile">
+                                <strong>Campus life has better reasons</strong>
+                                <p>A course, a club or a free hour makes the first message easy.</p>
+                            </article>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
