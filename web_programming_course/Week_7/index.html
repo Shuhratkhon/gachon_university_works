@@ -16,29 +16,29 @@
             <div class="form-group">
                 <label for="name">Full Name</label>
                 <input type="text" id="name" name="name" minlength="2" required
-                    aria-describedby="nameError">
-                <span class="error" id="nameError"></span>
+                    aria-describedby="nameError" aria-invalid="false">
+                <span class="error" id="nameError" aria-live="polite"></span>
             </div>
 
             <div class="form-group">
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" required
-                    aria-describedby="emailError">
-                <span class="error" id="emailError"></span>
+                    aria-describedby="emailError" aria-invalid="false">
+                <span class="error" id="emailError" aria-live="polite"></span>
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" minlength="8" required
-                    aria-describedby="passwordError">
-                <span class="error" id="passwordError"></span>
+                    aria-describedby="passwordError" aria-invalid="false">
+                <span class="error" id="passwordError" aria-live="polite"></span>
             </div>
 
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" required
-                    aria-describedby="confirmPasswordError">
-                <span class="error" id="confirmPasswordError"></span>
+                    aria-describedby="confirmPasswordError" aria-invalid="false">
+                <span class="error" id="confirmPasswordError" aria-live="polite"></span>
             </div>
 
             <button type="submit" id="submitButton" disabled>Register</button>
