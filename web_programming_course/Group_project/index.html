@@ -3,128 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overlap | Group Project</title>
+    <title>Group Project</title>
     <style>
         :root {
-            --bg: #0f172a;
-            --card: #1e293b;
-            --accent: #3b82f6;
             --text: #f1f5f9;
             --muted: #94a3b8;
             --border: #334155;
-            --teal: #2dd4bf;
+            --accent: #3b82f6;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             min-height: 100vh;
-            padding: 2rem 1rem 4rem;
+            display: grid;
+            place-items: center;
+            padding: 2rem 1rem;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            line-height: 1.6;
             color: var(--text);
             background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
         }
 
-        .container { max-width: 960px; margin: 0 auto; }
-        .back-link { display: inline-block; margin-bottom: 2rem; color: #93c5fd; text-decoration: none; }
-        .back-link:hover { text-decoration: underline; }
-
-        .hero {
-            padding: clamp(1.5rem, 5vw, 3.5rem);
+        .window {
+            width: min(900px, 100%);
+            overflow: hidden;
             border: 1px solid var(--border);
-            border-top: 4px solid var(--accent);
             border-radius: 16px;
-            background: rgba(30, 41, 59, 0.88);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+            background: #1e293b;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
         }
 
-        .kicker { color: #93c5fd; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; }
-        h1 {
-            margin: 0.4rem 0 0.7rem;
-            font-size: clamp(2.8rem, 8vw, 5rem);
-            line-height: 1.1;
+        .window-header {
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            background: linear-gradient(90deg, #1e3a8a, #312e81);
+        }
+
+        h1 { font-size: clamp(1.35rem, 4vw, 1.8rem); }
+        .badge {
+            padding: 0.35rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.15);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .content { padding: clamp(2rem, 7vw, 4rem); }
+
+        .project-link {
+            display: inline-block;
+            color: var(--text);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 750;
             letter-spacing: -0.05em;
+            line-height: 1.1;
+            text-decoration: none;
             background: linear-gradient(90deg, #f1f5f9, #93c5fd, #c4b5fd);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            transition: transform 0.2s ease;
         }
-        .intro { max-width: 720px; color: var(--muted); font-size: 1.1rem; }
-        .actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.5rem; }
-        .button {
-            display: inline-flex; align-items: center; justify-content: center;
-            padding: 0.7rem 1rem; border-radius: 10px; border: 1px solid #475569;
-            text-decoration: none; color: var(--text); font-weight: 600;
-            background: #334155; transition: transform 0.2s, background 0.2s;
-        }
-        .button:hover { transform: translateY(-2px); background: var(--accent); }
-        .button.primary { background: var(--accent); border-color: var(--accent); }
 
-        section { margin-top: 2rem; }
-        h2 { font-size: 1.5rem; margin-bottom: 0.9rem; }
-        .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.85rem; }
-        .tile {
-            min-width: 0; padding: 1.2rem; border: 1px solid var(--border);
-            border-top: 3px solid var(--accent); border-radius: 12px;
-            background: var(--card);
-        }
-        .tile strong { display: block; margin-bottom: 0.45rem; font-size: 1rem; }
-        .tile p { color: var(--muted); font-size: 0.92rem; }
-        .team-id { color: #5eead4; font-weight: 600; }
-        .problem { border-top-color: var(--teal); }
-        footer { margin-top: 3rem; color: var(--muted); text-align: center; font-size: 0.85rem; }
-        footer a { color: #60a5fa; text-decoration: none; }
+        .project-link:hover { transform: translateX(5px); }
+        .hint { margin-top: 1rem; color: var(--muted); }
+        .back-link { display: inline-block; margin-top: 2rem; color: #93c5fd; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
 
-        @media (max-width: 650px) {
-            .grid { grid-template-columns: 1fr; }
-            .actions { flex-direction: column; }
-            .button { width: 100%; }
+        @media (max-width: 500px) {
+            .window-header { align-items: flex-start; flex-direction: column; }
         }
     </style>
 </head>
 <body>
-    <main class="container">
-        <a class="back-link" href="../index.html">← Back to Web Programming Course</a>
-
-        <header class="hero">
-            <span class="kicker">GROUP PROJECT</span>
-            <h1>Overlap</h1>
-            <p class="intro">A university app where students chat, meet, study and learn. Find your course mates who you overlap with!</p>
-            <div class="actions">
-                <a class="button primary" href="https://overlaps.tech" target="_blank" rel="noopener noreferrer">Visit overlaps.tech ↗</a>
-                <a class="button" href="https://www.instagram.com/overlaps.app/" target="_blank" rel="noopener noreferrer">Instagram @overlaps.app ↗</a>
-            </div>
+    <main class="window">
+        <header class="window-header">
+            <h1>Group Project</h1>
+            <span class="badge">Team 2</span>
         </header>
-
-        <section>
-            <h2>Team</h2>
-            <div class="grid">
-                <article class="tile"><strong>Rahimjon</strong><span class="team-id">202438377</span></article>
-                <article class="tile"><strong>Asilbek</strong><span class="team-id">202438394</span></article>
-                <article class="tile"><strong>Shuhratxon</strong><span class="team-id">202537358</span></article>
-            </div>
+        <section class="content">
+            <a class="project-link" href="details.html" target="_blank" rel="noopener noreferrer">Overlap ↗</a>
+            <p class="hint">Open Overlap to view the project details.</p>
+            <a class="back-link" href="../index.html">← Back to Web Programming Course</a>
         </section>
-
-        <section>
-            <h2>The problem</h2>
-            <div class="grid">
-                <article class="tile problem">
-                    <strong>Same lecture, never spoken</strong>
-                    <p>You can see the same faces for a whole semester without saying hello.</p>
-                </article>
-                <article class="tile problem">
-                    <strong>Most apps start from looks</strong>
-                    <p>A photo and a swipe tell you nothing about whether you would get along.</p>
-                </article>
-                <article class="tile problem">
-                    <strong>Campus life has better reasons</strong>
-                    <p>A course, a club or a free hour makes the first message easy.</p>
-                </article>
-            </div>
-        </section>
-
-        <footer>Built for the Web Programming Course · <a href="https://github.com/Shuhratkhon" target="_blank" rel="noopener noreferrer">@Shuhratkhon</a></footer>
     </main>
 </body>
 </html>
