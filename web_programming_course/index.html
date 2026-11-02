@@ -379,6 +379,127 @@
             text-decoration: underline;
         }
 
+
+        /* ===== Subtle space atmosphere ===== */
+        body {
+            position: relative;
+            isolation: isolate;
+        }
+
+        .space-effects {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .header h1,
+        .github-btn,
+        .week-nav,
+        .container,
+        footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            z-index: 0;
+            top: -7px;
+            right: 76px;
+            width: 66px;
+            height: 66px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 28% 30%, rgba(148, 163, 184, 0.36) 0 5px, transparent 6px),
+                radial-gradient(circle at 67% 57%, rgba(148, 163, 184, 0.28) 0 8px, transparent 9px),
+                radial-gradient(circle at 40% 73%, rgba(148, 163, 184, 0.2) 0 4px, transparent 5px),
+                radial-gradient(circle at 32% 25%, #f8fafc, #cbd5e1 48%, #64748b 100%);
+            box-shadow: 0 0 24px rgba(147, 197, 253, 0.16), inset -8px -5px 14px rgba(15, 23, 42, 0.38);
+            opacity: 0.9;
+            animation: moon-drift 7s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .shooting-star {
+            position: absolute;
+            top: -12%;
+            left: 12%;
+            width: 2px;
+            height: 74px;
+            border-radius: 999px;
+            background: linear-gradient(to bottom, transparent, rgba(147, 197, 253, 0.85), transparent);
+            opacity: 0;
+            transform: rotate(38deg);
+            animation: star-fall 8s linear infinite;
+        }
+
+        .shooting-star:nth-child(2) {
+            left: 38%;
+            animation-delay: -3.5s;
+            animation-duration: 10s;
+            height: 58px;
+            opacity: 0;
+        }
+
+        .shooting-star:nth-child(3) {
+            left: 72%;
+            animation-delay: -6s;
+            animation-duration: 9s;
+            height: 86px;
+        }
+
+        .shooting-star:nth-child(4) {
+            left: 88%;
+            animation-delay: -1.5s;
+            animation-duration: 11s;
+            height: 48px;
+        }
+
+        @keyframes star-fall {
+            0% {
+                transform: translate3d(0, -15vh, 0) rotate(38deg);
+                opacity: 0;
+            }
+            8% {
+                opacity: 0.65;
+            }
+            75% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translate3d(28vw, 125vh, 0) rotate(38deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes moon-drift {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(4px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .shooting-star,
+            .header::before {
+                animation: none;
+            }
+
+            .shooting-star {
+                display: none;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .header::before {
+                width: 42px;
+                height: 42px;
+                right: 58px;
+                top: 3px;
+            }
+        }
+
         /* Responsive tweaks */
         @media (max-width: 500px) {
             .btn-grid {
@@ -393,6 +514,14 @@
     </style>
 </head>
 <body>
+
+    <div class="space-effects" aria-hidden="true">
+        <span class="shooting-star"></span>
+        <span class="shooting-star"></span>
+        <span class="shooting-star"></span>
+        <span class="shooting-star"></span>
+    </div>
+
 
     <!-- Header with title + GitHub circular profile -->
     <header class="header">
