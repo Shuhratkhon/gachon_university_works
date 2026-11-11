@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6 | Book Search</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="../../index.html">Web Programming Course</a>
+        <a class="home-link" href="../../index.html">← All weekly homeworks</a>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <p class="eyebrow">WEEK 06 · OPEN LIBRARY API</p>
+            <h1>Book <span>Search</span></h1>
+            <p class="lead">Type a book title or an author and I fetch matching books from the Open Library API.</p>
+
+            <form id="search-form" class="search">
+                <label for="query" class="sr-only">Book title or author</label>
+                <input type="text" id="query" placeholder="e.g. harry potter, tolkien..." autocomplete="off">
+                <button type="submit">Search</button>
+            </form>
+
+            <div class="quick">
+                <span>Try:</span>
+                <button type="button" class="chip">the little prince</button>
+                <button type="button" class="chip">agatha christie</button>
+                <button type="button" class="chip">javascript</button>
+            </div>
+        </section>
+
+        <p id="status" class="status" aria-live="polite"></p>
+        <div id="books" class="books"></div>
+
+        <footer>Built for the Web Programming Course · <a href="https://github.com/Shuhratkhon" target="_blank" rel="noopener noreferrer">@Shuhratkhon</a></footer>
+    </main>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 9 | Accessibility Audit</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="topbar">
+        <a class="brand" href="../index.html">Web Programming Course</a>
+        <a class="home-link" href="../index.html">← All weekly homeworks</a>
+    </header>
+
+    <main class="container" id="main">
+        <section class="hero">
+            <p class="eyebrow">WEEK 09 · WEB ACCESSIBILITY</p>
+            <h1>Accessibility audit of <span>my own course pages</span></h1>
+            <p class="lead">I went back through every HTML page I made for this course (Week 1 to Week 8) and checked the basic things a screen reader, a phone and a keyboard user need. Here is what I found and how each problem gets fixed.</p>
+
+            <div class="stats">
+                <div><b>122</b><small>pages checked</small></div>
+                <div class="bad"><b>102</b><small>no &lt;main&gt;</small></div>
+                <div class="bad"><b>84</b><small>no viewport tag</small></div>
+                <div class="bad"><b>66</b><small>no &lt;title&gt;</small></div>
+                <div class="bad"><b>27</b><small>no lang</small></div>
+                <div class="good"><b>0</b><small>images without alt</small></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">WHAT I CHECKED</p>
+                    <h2>Results by week</h2>
+                </div>
+                <label class="filter">Show problem
+                    <select id="issue-select">
+                        <option value="main">Missing &lt;main&gt;</option>
+                        <option value="viewport">Missing viewport</option>
+                        <option value="title">Missing &lt;title&gt;</option>
+                        <option value="lang">Missing lang</option>
+                    </select>
+                </label>
+            </div>
+            <p class="note" id="issue-note"></p>
+            <div class="bars" id="bars"></div>
+            <p class="small">My early weeks are the worst. In Week 2 most files were just pieces of HTML without &lt;html&gt; or &lt;head&gt;, so they are missing almost everything. Week 5 and Week 8 pass all four checks.</p>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">HOW TO FIX IT</p>
+                    <h2>Problem → fix</h2>
+                </div>
+                <p>Click a problem to see why it matters and the code change, using real files from my repo.</p>
+            </div>
+
+            <div class="issues">
+                <article class="issue">
+                    <button class="issue-toggle" aria-expanded="true" aria-controls="fix-1">
+                        <span class="issue-icon">T</span>
+                        <span><b>Page has no &lt;title&gt;</b><small>66 pages · WCAG 2.4.2</small></span>
+                        <span class="chevron">−</span>
+                    </button>
+                    <div class="issue-content" id="fix-1">
+                        <p>Without a title the browser tab just shows the file name, and a screen reader has nothing to announce when the page opens.</p>
+                        <div class="code-pair">
+                            <div><small>BEFORE · Week_3/exercise-2.html</small>
+<pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;</code></pre></div>
+                            <div><small>AFTER</small>
+<pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Exercise 2 | Week 3&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;</code></pre></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="issue">
+                    <button class="issue-toggle" aria-expanded="false" aria-controls="fix-2">
+                        <span class="issue-icon">L</span>
+                        <span><b>No lang on &lt;html&gt;</b><small>27 pages · WCAG 3.1.1</small></span>
+                        <span class="chevron">+</span>
+                    </button>
+                    <div class="issue-content" id="fix-2" hidden>
+                        <p>A screen reader uses the lang attribute to pick the right voice and pronunciation. Most of these are the Week 2 files that start straight with a tag, so the fix is to make them full documents.</p>
+                        <div class="code-pair">
+                            <div><small>BEFORE · Week_2/exercise-3.html</small>
+<pre><code>&lt;header&gt;
+  &lt;nav aria-label="Main navigation"&gt;
+    ...</code></pre></div>
+                            <div><small>AFTER</small>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Exercise 3 | Week 2&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;nav aria-label="Main navigation"&gt;
+    ...</code></pre></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="issue">
+                    <button class="issue-toggle" aria-expanded="false" aria-controls="fix-3">
+                        <span class="issue-icon">V</span>
+                        <span><b>No viewport meta tag</b><small>84 pages · mobile</small></span>
+                        <span class="chevron">+</span>
+                    </button>
+                    <div class="issue-content" id="fix-3" hidden>
+                        <p>Without it a phone renders the page like a 980px desktop and zooms out, so the text is tiny and people have to pinch to read it.</p>
+                        <div class="code-pair">
+                            <div><small>BEFORE</small>
+<pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;...&lt;/title&gt;</code></pre></div>
+                            <div><small>AFTER</small>
+<pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport"
+        content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;...&lt;/title&gt;</code></pre></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="issue">
+                    <button class="issue-toggle" aria-expanded="false" aria-controls="fix-4">
+                        <span class="issue-icon">M</span>
+                        <span><b>No &lt;main&gt; landmark</b><small>102 pages · WCAG 1.3.1</small></span>
+                        <span class="chevron">+</span>
+                    </button>
+                    <div class="issue-content" id="fix-4" hidden>
+                        <p>Screen reader users can jump straight to the main landmark. If there is none they have to go through the page from the top every time.</p>
+                        <div class="code-pair">
+                            <div><small>BEFORE · Week_1/exercise-1.html</small>
+<pre><code>&lt;body&gt;
+  &lt;h1&gt;Hello, Gachon!&lt;/h1&gt;
+&lt;/body&gt;</code></pre></div>
+                            <div><small>AFTER</small>
+<pre><code>&lt;body&gt;
+  &lt;main&gt;
+    &lt;h1&gt;Hello, Gachon!&lt;/h1&gt;
+  &lt;/main&gt;
+&lt;/body&gt;</code></pre></div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">ON THIS PAGE</p>
+                    <h2>Things I did here</h2>
+                </div>
+                <p>I tried to make this page itself pass the same checks. Tick them off while you test it.</p>
+            </div>
+            <ul class="checklist" id="checklist">
+                <li><label><input type="checkbox"> Press Tab once: a "Skip to main content" link shows up</label></li>
+                <li><label><input type="checkbox"> Every problem above opens and closes with Enter or Space</label></li>
+                <li><label><input type="checkbox"> The page has a title, lang="en" and a viewport tag</label></li>
+                <li><label><input type="checkbox"> Focus outlines are visible on links and buttons</label></li>
+                <li><label><input type="checkbox"> Nothing scrolls sideways on a phone</label></li>
+            </ul>
+            <p class="small" id="check-count" aria-live="polite">0 of 5 checked</p>
+        </section>
+
+        <footer>Built for the Web Programming Course · <a href="https://github.com/Shuhratkhon" target="_blank" rel="noopener noreferrer">@Shuhratkhon</a></footer>
+    </main>
+</body>
+</html>
